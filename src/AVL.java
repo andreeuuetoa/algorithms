@@ -1,5 +1,3 @@
-package AVL_puu;
-
 public class AVL {
 
 	public static Node insert(Node origin, int newValue) {
