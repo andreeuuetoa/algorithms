@@ -1,6 +1,8 @@
+package AVL_puu;
+
 public class Node {
 
-	private int value;
+	private final int value;
 	private Node left;
 	private Node right;
 
