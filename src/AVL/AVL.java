@@ -1,3 +1,5 @@
+package AVL;
+
 public class AVL {
 
 	public static Node insert(Node origin, int newValue) {
