@@ -1,7 +1,6 @@
 package Puud.BinaryHeap;
 
 class Node {
-
 	private Integer value;
 	private Node left;
 	private Node right;

@@ -1,5 +1,7 @@
 package Puud.BinaryHeap;
 
+import java.util.Random;
+
 public class MinHeapTree {
 	private static boolean isHeap(Node root) {
 		// Allikas: https://www.geeksforgeeks.org/how-to-check-if-a-given-array-represents-a-binary-heap/
@@ -71,8 +73,8 @@ public class MinHeapTree {
 
 	public static void main(String[] args) {
 		Node root = new Node();
-		int[] values = new int[] {28, 90, 88, 3, 65, 97, 17, 31, 99, 98};
-		for (int value : values) {
+		for (int i = 0; i < 10; i++) {
+			int value = new Random().nextInt(101);
 			root = insert(root, value);
 			System.out.println(root.pseudoXMLRepresentation());
 		}
