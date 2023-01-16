@@ -1,8 +1,8 @@
-package BinaryHeap;
+package Puud.BinaryHeap;
 
 import java.util.Arrays;
 
-public class MaxHeap {
+public class MinHeap {
 	private static int[] heap;
 
 	// Returns true if arr[i..n-1]
@@ -21,8 +21,8 @@ public class MaxHeap {
 		// children, and same is
 		// recursively true for the
 		// children
-		return arr[i] >= arr[2 * i + 1]
-				&& arr[i] >= arr[2 * i + 2]
+		return arr[i] <= arr[2 * i + 1]
+				&& arr[i] <= arr[2 * i + 2]
 				&& isHeap(arr, 2 * i + 1, n)
 				&& isHeap(arr, 2 * i + 2, n);
 	}
@@ -34,7 +34,7 @@ public class MaxHeap {
 
 	private static void heapifyArrayFromIndex(int index) {
 		int parent = index / 2;
-		if (heap[index] > heap[parent]) {
+		if (heap[index] < heap[parent]) {
 			heap[index] += heap[parent];
 			heap[parent] = heap[index] - heap[parent];
 			heap[index] -= heap[parent];
@@ -45,7 +45,7 @@ public class MaxHeap {
 	}
 
 	public static void main(String[] args) {
-		int[] values = new int[] {28, 41, 14, 52, 21, 60, 28, 94, 42, 4};
+		int[] values = new int[] {28, 90, 88, 3, 65, 97, 17, 31, 99, 98};
 		heap = new int[values.length];
 		for (int i = 0; i < values.length; i++) {
 			insert(values, i);

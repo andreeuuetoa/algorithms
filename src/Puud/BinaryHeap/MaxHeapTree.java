@@ -1,19 +1,16 @@
-package BinaryHeap;
+package Puud.BinaryHeap;
 
-public class MinHeapTree {
+public class MaxHeapTree {
 	private static boolean isHeap(Node root) {
 		if (root.getLeft() == null && root.getRight() == null) {
 			return true;
 		}
-		if (root.getLeft() == null) {
-			return root.getValue() <= root.getRight().getValue();
-		}
 		if (root.getRight() == null) {
-			return root.getValue() <= root.getLeft().getValue();
+			return root.getValue() >= root.getLeft().getValue();
 		}
 
-		return root.getValue() <= root.getLeft().getValue()
-				&& root.getValue() <= root.getRight().getValue()
+		return root.getValue() >= root.getLeft().getValue()
+				&& root.getValue() >= root.getRight().getValue()
 				&& isHeap(root.getLeft())
 				&& isHeap(root.getRight());
 	}
@@ -54,14 +51,14 @@ public class MinHeapTree {
 
 	private static Node heapify(Node root) {
 		if (root.getLeft() != null) {
-			if (root.getLeft().getValue() < root.getValue()) {
+			if (root.getLeft().getValue() > root.getValue()) {
 				root.getLeft().setValue(root.getLeft().getValue() + root.getValue());
 				root.setValue(root.getLeft().getValue() - root.getValue());
 				root.getLeft().setValue(root.getLeft().getValue() - root.getValue());
 			}
 		}
 		if (root.getRight() != null) {
-			if (root.getRight().getValue() < root.getValue()) {
+			if (root.getRight().getValue() > root.getValue()) {
 				root.getRight().setValue(root.getRight().getValue() + root.getValue());
 				root.setValue(root.getRight().getValue() - root.getValue());
 				root.getRight().setValue(root.getRight().getValue() - root.getValue());
@@ -72,7 +69,7 @@ public class MinHeapTree {
 
 	public static void main(String[] args) {
 		Node root = new Node();
-		int[] values = new int[] {28, 90, 88, 3, 65, 97, 17, 31, 99, 98};
+		int[] values = new int[] {28, 41, 14, 52, 21, 60, 28, 94, 42, 4};
 		for (int value : values) {
 			root = insert(root, value);
 			System.out.println(root.pseudoXMLRepresentation());

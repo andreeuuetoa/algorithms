@@ -1,4 +1,4 @@
-package AVL;
+package Puud.AVL;
 
 public class AVL {
 

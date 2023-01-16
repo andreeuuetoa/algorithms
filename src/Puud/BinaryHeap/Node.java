@@ -1,4 +1,4 @@
-package BinaryHeap;
+package Puud.BinaryHeap;
 
 class Node {
 
