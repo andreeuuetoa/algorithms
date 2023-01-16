@@ -5,22 +5,14 @@ import java.util.Arrays;
 public class MinHeap {
 	private static int[] heap;
 
-	// Returns true if arr[i..n-1]
-	// represents a max-heap
-	static boolean isHeap(int[] arr,
-	                      int i, int n)
-	{
-		// If (2 * i) + 1 >= n, then leaf node, so return true
+	private static boolean isHeap(int[] arr, int i, int n) {
+		// Allikas: https://www.geeksforgeeks.org/how-to-check-if-a-given-array-represents-a-binary-heap/
+
 		if (i >= (n - 1) / 2)
 		{
 			return true;
 		}
 
-		// If an internal node and
-		// is greater than its
-		// children, and same is
-		// recursively true for the
-		// children
 		return arr[i] <= arr[2 * i + 1]
 				&& arr[i] <= arr[2 * i + 2]
 				&& isHeap(arr, 2 * i + 1, n)

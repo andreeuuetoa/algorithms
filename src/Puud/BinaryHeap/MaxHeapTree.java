@@ -2,6 +2,8 @@ package Puud.BinaryHeap;
 
 public class MaxHeapTree {
 	private static boolean isHeap(Node root) {
+		// Allikas: https://www.geeksforgeeks.org/how-to-check-if-a-given-array-represents-a-binary-heap/
+
 		if (root.getLeft() == null && root.getRight() == null) {
 			return true;
 		}
