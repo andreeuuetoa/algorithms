@@ -1,7 +1,6 @@
 package Puud.AVL;
 
 public class AVL {
-
 	public static Node insert(Node origin, int newValue) {
 		Node newNode = new Node(newValue);
 		if (origin.getValue() == null) {
