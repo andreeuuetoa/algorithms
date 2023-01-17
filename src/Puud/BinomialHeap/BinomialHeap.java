@@ -1,7 +1,8 @@
 package Puud.BinomialHeap;
 
+import java.util.Random;
+
 public class BinomialHeap {
-	@SuppressWarnings("SameParameterValue")
 	private static Node createBinomialHeap(int layer) {
 		Node root = new Node(layer);
 		Node rootChild = createBinomialFirstChild(new Node(layer - 1));
@@ -21,7 +22,8 @@ public class BinomialHeap {
 	}
 
 	public static void main(String[] args) {
-		Node root = createBinomialHeap(5);
+		int layers = new Random().nextInt(11);
+		Node root = createBinomialHeap(layers);
 		System.out.println(root.pseudoXMLRepresentation());
 	}
 }
