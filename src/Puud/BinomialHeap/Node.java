@@ -1,6 +1,6 @@
 package Puud.BinomialHeap;
 
-public class Node {
+class Node {
 	private final int layer;
 	private Node firstChild;
 	private Node nextSibling;
