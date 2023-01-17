@@ -1,7 +1,11 @@
 package Puud.BinaryHeap;
 
+import java.util.Random;
+
 public class MaxHeapTree {
 	private static boolean isHeap(Node root) {
+		// Allikas: https://www.geeksforgeeks.org/how-to-check-if-a-given-array-represents-a-binary-heap/
+
 		if (root.getLeft() == null && root.getRight() == null) {
 			return true;
 		}
@@ -69,8 +73,8 @@ public class MaxHeapTree {
 
 	public static void main(String[] args) {
 		Node root = new Node();
-		int[] values = new int[] {28, 41, 14, 52, 21, 60, 28, 94, 42, 4};
-		for (int value : values) {
+		for (int i = 0; i < 10; i++) {
+			int value = new Random().nextInt(101);
 			root = insert(root, value);
 			System.out.println(root.pseudoXMLRepresentation());
 		}

@@ -1,38 +1,29 @@
 package Puud.BinaryHeap;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class MinHeap {
-	private static int[] heap;
+	private static boolean isHeap(int[] arr, int i, int n) {
+		// Allikas: https://www.geeksforgeeks.org/how-to-check-if-a-given-array-represents-a-binary-heap/
 
-	// Returns true if arr[i..n-1]
-	// represents a max-heap
-	static boolean isHeap(int[] arr,
-	                      int i, int n)
-	{
-		// If (2 * i) + 1 >= n, then leaf node, so return true
 		if (i >= (n - 1) / 2)
 		{
 			return true;
 		}
 
-		// If an internal node and
-		// is greater than its
-		// children, and same is
-		// recursively true for the
-		// children
 		return arr[i] <= arr[2 * i + 1]
 				&& arr[i] <= arr[2 * i + 2]
 				&& isHeap(arr, 2 * i + 1, n)
 				&& isHeap(arr, 2 * i + 2, n);
 	}
 
-	private static void insert(int[] values, int index) {
-		heap[index] = values[index];
-		heapifyArrayFromIndex(index);
+	private static void insert(int[] heap, int value, int index) {
+		heap[index] = value;
+		heapifyArrayFromIndex(heap, index);
 	}
 
-	private static void heapifyArrayFromIndex(int index) {
+	private static void heapifyArrayFromIndex(int[] heap, int index) {
 		int parent = index / 2;
 		if (heap[index] < heap[parent]) {
 			heap[index] += heap[parent];
@@ -40,18 +31,18 @@ public class MinHeap {
 			heap[index] -= heap[parent];
 		}
 		if (parent >= 1) {
-			heapifyArrayFromIndex(parent);
+			heapifyArrayFromIndex(heap, parent);
 		}
 	}
 
 	public static void main(String[] args) {
-		int[] values = new int[] {28, 90, 88, 3, 65, 97, 17, 31, 99, 98};
-		heap = new int[values.length];
-		for (int i = 0; i < values.length; i++) {
-			insert(values, i);
+		int[] heap = new int[10];
+		for (int i = 0; i < heap.length; i++) {
+			int value = new Random().nextInt(101);
+			insert(heap, value, i);
 			System.out.println(Arrays.toString(heap));
 		}
-		int n = values.length - 1;
+		int n = heap.length - 1;
 		if (isHeap(heap, 0, n)) {
 			System.out.println("Yes");
 		}

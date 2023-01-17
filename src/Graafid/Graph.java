@@ -7,7 +7,6 @@ package Graafid;
  * ja infoväli, mis ütleb, et kas graaf sisaldab negatiivset kaart.
  */
 class Graph {
-
 	public static final int INFINITY = Integer.MAX_VALUE / 2;
 	private String id;
 	private Vertex first;

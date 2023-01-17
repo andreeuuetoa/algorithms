@@ -6,7 +6,6 @@ package Graafid;
  * viide esimesele sellest väljuvale kaarele ja infoväli.
  */
 class Vertex {
-
 	private final String id;
 	private Vertex next;
 	private Arc first;

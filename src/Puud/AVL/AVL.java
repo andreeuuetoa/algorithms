@@ -1,7 +1,8 @@
 package Puud.AVL;
 
-public class AVL {
+import java.util.Random;
 
+public class AVL {
 	public static Node insert(Node origin, int newValue) {
 		Node newNode = new Node(newValue);
 		if (origin.getValue() == null) {
@@ -11,7 +12,7 @@ public class AVL {
 		return balance(origin);
 	}
 
-	public static void insertNode(Node origin, Node newNode) {
+	private static void insertNode(Node origin, Node newNode) {
 		int value = newNode.getValue();
 		if (value < origin.getValue()) {
 			if (origin.getLeft() == null) {
@@ -68,9 +69,9 @@ public class AVL {
 
 	public static void main(String[] args) {
 		Node root = new Node();
-		int[] values = new int[] {'M', 'N', 'O', 'L', 'K', 'Q', 'P', 'H', 'I', 'A'};
-		for (int value : values) {
+		for (int i = 0; i < 10; i++) {
 			System.out.println(root.pseudoXMLRepresentation());
+			int value = new Random().nextInt(101);
 			root = insert(root, value);
 		}
 		System.out.println(root.pseudoXMLRepresentation());

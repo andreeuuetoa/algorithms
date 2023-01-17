@@ -8,7 +8,6 @@ package Graafid;
  * viide järgmisele kaarele ja infoväli.
  */
 class Arc {
-
 	private final String id;
 	private Vertex target;
 	private Arc next;
