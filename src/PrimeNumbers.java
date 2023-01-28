@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class PrimeNumbers {
 	public static List<Integer> generatePrimesTo(int upperLimit) {
@@ -21,7 +22,8 @@ public class PrimeNumbers {
 	}
 
 	public static void main(String[] args) {
-		List<Integer> primes = generatePrimesTo(200);
+		int value = new Random().nextInt(501);
+		List<Integer> primes = generatePrimesTo(value);
 		System.out.println(primes);
 	}
 }
