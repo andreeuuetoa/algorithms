@@ -1,9 +1,9 @@
-package Puud.BinaryHeap;
+package Trees.BinaryHeap;
 
 import java.util.Arrays;
 import java.util.Random;
 
-public class MaxHeap {
+public class MinHeap {
 	private static boolean isHeap(int[] arr, int i, int n) {
 		// Allikas: https://www.geeksforgeeks.org/how-to-check-if-a-given-array-represents-a-binary-heap/
 
@@ -12,8 +12,8 @@ public class MaxHeap {
 			return true;
 		}
 
-		return arr[i] >= arr[2 * i + 1]
-				&& arr[i] >= arr[2 * i + 2]
+		return arr[i] <= arr[2 * i + 1]
+				&& arr[i] <= arr[2 * i + 2]
 				&& isHeap(arr, 2 * i + 1, n)
 				&& isHeap(arr, 2 * i + 2, n);
 	}
@@ -25,7 +25,7 @@ public class MaxHeap {
 
 	private static void heapifyArrayFromIndex(int[] heap, int index) {
 		int parent = index / 2;
-		if (heap[index] > heap[parent]) {
+		if (heap[index] < heap[parent]) {
 			heap[index] += heap[parent];
 			heap[parent] = heap[index] - heap[parent];
 			heap[index] -= heap[parent];

@@ -1,4 +1,4 @@
-package Graafid;
+package Graphs;
 
 /**
  * Graph (graaf) klassiga kujutame graafi kui objekti.

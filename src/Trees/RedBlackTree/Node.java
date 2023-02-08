@@ -1,31 +1,33 @@
-package Puud.RedBlackTree;
+package Trees.RedBlackTree;
+
+import java.util.Random;
 
 class Node {
-
-	private final Integer value;
-	private boolean isRed;
+	private Integer value;
 	private Node left;
 	private Node right;
 
 	Node() {
 		this.value = null;
-		this.isRed = false;
 	}
 
 	Node(int value) {
 		this.value = value;
-		this.isRed = false;
 	}
 
 	public Integer getValue() {
 		return value;
 	}
 
+	private void setValue(int value) {
+		this.value = value;
+	}
+
 	public Node getLeft() {
 		return left;
 	}
 
-	public void setLeft(Node left) {
+	private void setLeft(Node left) {
 		this.left = left;
 	}
 
@@ -33,27 +35,11 @@ class Node {
 		return right;
 	}
 
-	public void setRight(Node right) {
+	private void setRight(Node right) {
 		this.right = right;
 	}
 
-	public boolean isRed() {
-		return isRed;
-	}
-
-	public boolean isBlack() {
-		return !isRed;
-	}
-
-	public void setAsRed() {
-		isRed = true;
-	}
-
-	public void setAsBlack() {
-		isRed = false;
-	}
-
-	int getHeight() {
+	public int getHeight() {
 		return getHeightSubtree(1);
 	}
 
@@ -131,5 +117,88 @@ class Node {
 		XML.append(layer);
 		XML.append(">");
 		XML.append("\n");
+	}
+
+	public void insert(int newValue) {
+		if (getValue() == null) {
+			setValue(newValue);
+			return;
+		}
+		Node newNode = new Node(newValue);
+		insertNode(newNode);
+		balance();
+		colour();
+	}
+
+	private void insertNode(Node newNode) {
+		int value = newNode.getValue();
+		if (value < getValue()) {
+			if (getLeft() == null) {
+				setLeft(newNode);
+				return;
+			}
+			getLeft().insertNode(newNode);
+		} else if (value > getValue()) {
+			if (getRight() == null) {
+				setRight(newNode);
+				return;
+			}
+			getRight().insertNode(newNode);
+		}
+	}
+	private void balance() {
+		if (getLeft() != null) {
+			getLeft().balance();
+		}
+		if (getRight() != null) {
+			getRight().balance();
+		}
+		int originBF = getBalanceFactor();
+		if (originBF == 2) {
+			int rightBF = getRight().getBalanceFactor();
+			if (rightBF == -1) {
+				getRight().rightRotation();
+			}
+			leftRotation();
+		} else if (originBF == -2) {
+			int leftBF = getLeft().getBalanceFactor();
+			if (leftBF == 1) {
+				getLeft().leftRotation();
+			}
+			rightRotation();
+		}
+	}
+
+	private void rightRotation() {
+		Node formerThis = this;
+		Node formerLeft = getLeft();
+		setValue(getLeft().getValue());
+		setLeft(getLeft().getLeft());
+		setRight(formerThis);
+		getRight().setLeft(formerLeft.getRight());
+	}
+
+	private void leftRotation() {
+		Node formerThis = this;
+		Node formerRight = getRight();
+		setValue(getRight().getValue());
+		setRight(getRight().getRight());
+		setLeft(formerThis);
+		getLeft().setRight(formerRight.getLeft());
+	}
+
+	private void colour() {
+
+	}
+
+	public static void main(String[] args) {
+		Node root = new Node();
+		for (int i = 0; i < 10; i++) {
+			System.out.println(root.pseudoXMLRepresentation());
+			int value = new Random().nextInt(101);
+			root.insert(value);
+		}
+		System.out.println(root.pseudoXMLRepresentation());
+		System.out.println(root.getHeight());
 	}
 }

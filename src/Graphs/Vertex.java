@@ -1,4 +1,4 @@
-package Graafid;
+package Graphs;
 
 /**
  * Vertex (tipp) kujutab ühte tippu graafis.

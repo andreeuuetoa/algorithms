@@ -1,4 +1,4 @@
-package Puud.BinomialHeap;
+package Trees.BinomialHeap;
 
 import java.util.Random;
 
