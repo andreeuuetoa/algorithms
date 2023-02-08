@@ -5,19 +5,16 @@ import java.util.Random;
 
 public class InsertionSort {
 	public static void insertionSort(int[] numbers) {
-		int lastIndex = 1;
-		while (lastIndex < numbers.length) {
+		for (int lastIndex = 1; lastIndex < numbers.length; lastIndex++) {
 			int toInsert = numbers[lastIndex];
-			int compIndex = lastIndex - 1;
-			while (compIndex >= 0) {
+			int compIndex;
+			for (compIndex = lastIndex - 1; compIndex >= 0; compIndex--) {
 				if (toInsert >= numbers[compIndex]) {
 					break;
 				}
 				numbers[compIndex + 1] = numbers[compIndex];
-				compIndex--;
 			}
 			numbers[compIndex + 1] = toInsert;
-			lastIndex++;
 		}
 	}
 
