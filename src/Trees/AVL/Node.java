@@ -169,8 +169,8 @@ class Node {
 	}
 
 	private void rightRotation() {
-		Node formerThis = this;
-		Node formerLeft = getLeft();
+		Node formerThis = makeCopy();
+		Node formerLeft = formerThis.getLeft();
 		setValue(getLeft().getValue());
 		setLeft(getLeft().getLeft());
 		setRight(formerThis);
@@ -178,12 +178,23 @@ class Node {
 	}
 
 	private void leftRotation() {
-		Node formerThis = this;
-		Node formerRight = getRight();
+		Node formerThis = makeCopy();
+		Node formerRight = formerThis.getRight();
 		setValue(getRight().getValue());
 		setRight(getRight().getRight());
 		setLeft(formerThis);
 		getLeft().setRight(formerRight.getLeft());
+	}
+
+	private Node makeCopy() {
+		Node copyThis = new Node(getValue());
+		if (getLeft() != null) {
+			copyThis.setLeft(getLeft().makeCopy());
+		}
+		if (getRight() != null) {
+			copyThis.setRight(getRight().makeCopy());
+		}
+		return copyThis;
 	}
 
 	public static void main(String[] args) {
