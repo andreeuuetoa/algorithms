@@ -6,6 +6,7 @@ class Node {
 	private Integer value;
 	private Node left;
 	private Node right;
+	private Colour colour;
 
 	Node() {
 		this.value = null;
@@ -37,6 +38,14 @@ class Node {
 
 	private void setRight(Node right) {
 		this.right = right;
+	}
+
+	public Colour getColour() {
+		return colour;
+	}
+
+	private void setColour(Colour colour) {
+		this.colour = colour;
 	}
 
 	public int getHeight() {
@@ -81,6 +90,8 @@ class Node {
 		XML.append(layer);
 		XML.append("> ");
 		XML.append(getValue());
+		XML.append(' ');
+		XML.append(getColour());
 		XML.append(' ');
 		if (getLeft() != null) {
 			XML.append("\n");
