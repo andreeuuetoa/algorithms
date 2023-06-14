@@ -157,6 +157,7 @@ class Node {
 			getRight().insertNode(newNode);
 		}
 	}
+
 	private void balance() {
 		if (getLeft() != null) {
 			getLeft().balance();
