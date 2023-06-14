@@ -149,7 +149,7 @@ class Node {
 				return;
 			}
 			getLeft().insertNode(newNode);
-		} else if (value > getValue()) {
+		} else {
 			if (getRight() == null) {
 				setRight(newNode);
 				return;

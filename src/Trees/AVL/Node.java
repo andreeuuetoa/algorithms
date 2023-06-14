@@ -137,7 +137,7 @@ class Node {
 				return;
 			}
 			getLeft().insertNode(newNode);
-		} else if (value > getValue()) {
+		} else {
 			if (getRight() == null) {
 				setRight(newNode);
 				return;
@@ -145,6 +145,7 @@ class Node {
 			getRight().insertNode(newNode);
 		}
 	}
+
 	private void balance() {
 		if (getLeft() != null) {
 			getLeft().balance();
