@@ -7,7 +7,7 @@ public class MaxHeap {
 	private static final int HEAP_SIZE = 10;
 	private static int LAST_INDEX = -1;
 
-	private static boolean isHeap(Integer[] arr, int i, int n) {
+	private static boolean isHeap(Integer[] numbers, int i, int n) {
 		// Allikas: https://www.geeksforgeeks.org/how-to-check-if-a-given-array-represents-a-binary-heap/
 
 		if (i >= (n - 1) / 2)
@@ -15,10 +15,10 @@ public class MaxHeap {
 			return true;
 		}
 
-		return arr[i] >= arr[2 * i + 1]
-				&& arr[i] >= arr[2 * i + 2]
-				&& isHeap(arr, 2 * i + 1, n)
-				&& isHeap(arr, 2 * i + 2, n);
+		return numbers[i] >= numbers[2 * i + 1]
+				&& numbers[i] >= numbers[2 * i + 2]
+				&& isHeap(numbers, 2 * i + 1, n)
+				&& isHeap(numbers, 2 * i + 2, n);
 	}
 
 	public static void insert(Integer[] heap, int value, int index) {
