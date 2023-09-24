@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class HeapSort {
     private static final int HEAP_SIZE = 10;
-    private static int LAST_INDEX = -1;
+    private static int LAST_INDEX = HEAP_SIZE - 1;
 
     private static boolean isHeap(Integer[] numbers, int i, int n) {
         // Allikas: https://www.geeksforgeeks.org/how-to-check-if-a-given-array-represents-a-binary-heap/
@@ -19,12 +19,6 @@ public class HeapSort {
                 && numbers[i] >= numbers[2 * i + 2]
                 && isHeap(numbers, 2 * i + 1, n)
                 && isHeap(numbers, 2 * i + 2, n);
-    }
-
-    public static void insert(Integer[] heap, int value, int index) {
-        heap[index] = value;
-        heapifyArrayFromIndex(heap, index);
-        LAST_INDEX++;
     }
 
     public static int pop(Integer[] heap) {
@@ -67,7 +61,7 @@ public class HeapSort {
         Integer[] numbers = new Integer[HEAP_SIZE];
         for (int i = 0; i < numbers.length; i++) {
             int value = new Random().nextInt(101);
-            insert(numbers, value, i);
+            numbers[i] = value;
         }
         System.out.println(Arrays.toString(numbers));
         heapSort(numbers);
