@@ -4,7 +4,10 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class MinHeap {
-	private static boolean isHeap(int[] arr, int i, int n) {
+	private static final int HEAP_SIZE = 10;
+	private static int LAST_INDEX = -1;
+
+	private static boolean isHeap(Integer[] integers, int i, int n) {
 		// Allikas: https://www.geeksforgeeks.org/how-to-check-if-a-given-array-represents-a-binary-heap/
 
 		if (i >= (n - 1) / 2)
@@ -12,31 +15,47 @@ public class MinHeap {
 			return true;
 		}
 
-		return arr[i] <= arr[2 * i + 1]
-				&& arr[i] <= arr[2 * i + 2]
-				&& isHeap(arr, 2 * i + 1, n)
-				&& isHeap(arr, 2 * i + 2, n);
+		return integers[i] <= integers[2 * i + 1]
+				&& integers[i] <= integers[2 * i + 2]
+				&& isHeap(integers, 2 * i + 1, n)
+				&& isHeap(integers, 2 * i + 2, n);
 	}
 
-	private static void insert(int[] heap, int value, int index) {
+	private static void insert(Integer[] heap, int value, int index) {
 		heap[index] = value;
 		heapifyArrayFromIndex(heap, index);
+		LAST_INDEX++;
 	}
 
-	private static void heapifyArrayFromIndex(int[] heap, int index) {
-		int parent = index / 2;
-		if (heap[index] < heap[parent]) {
-			heap[index] += heap[parent];
-			heap[parent] = heap[index] - heap[parent];
-			heap[index] -= heap[parent];
+	public static int pop(Integer[] heap) {
+		int last = heap[LAST_INDEX];
+		heap[LAST_INDEX] = null;
+		heapifyArrayFromIndex(heap, LAST_INDEX);
+		LAST_INDEX--;
+		return last;
+	}
+
+	private static void heapifyArrayFromIndex(Integer[] integers, int index) {
+		if (integers[index] == null) {
+			heapifyArrayFromIndex(integers, index - 1);
+			return;
 		}
-		if (parent >= 1) {
-			heapifyArrayFromIndex(heap, parent);
+		int parentIndex = index / 2;
+		if (integers[index] < integers[parentIndex]) {
+			integers[index] += integers[parentIndex];
+			integers[parentIndex] = integers[index] - integers[parentIndex];
+			integers[index] -= integers[parentIndex];
+		}
+		if (parentIndex >= 1) {
+			heapifyArrayFromIndex(integers, parentIndex);
+		}
+		if (!isHeap(integers, 0, index)) {
+			throw new RuntimeException("The array is not a heap!");
 		}
 	}
 
 	public static void main(String[] args) {
-		int[] heap = new int[10];
+		Integer[] heap = new Integer[HEAP_SIZE];
 		for (int i = 0; i < heap.length; i++) {
 			int value = new Random().nextInt(101);
 			insert(heap, value, i);
@@ -49,5 +68,8 @@ public class MinHeap {
 		else {
 			System.out.println("No");
 		}
+		int last = pop(heap);
+		System.out.println(last);
+		System.out.println(Arrays.toString(heap));
 	}
 }
