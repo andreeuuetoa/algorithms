@@ -35,21 +35,21 @@ public class MaxHeap {
 		return last;
 	}
 
-	private static void heapifyArrayFromIndex(Integer[] heap, int index) {
-		if (heap[index] == null) {
-			heapifyArrayFromIndex(heap, index - 1);
+	private static void heapifyArrayFromIndex(Integer[] integers, int index) {
+		if (integers[index] == null) {
+			heapifyArrayFromIndex(integers, index - 1);
 			return;
 		}
 		int parentIndex = index / 2;
-		if (heap[index] > heap[parentIndex]) {
-			heap[index] += heap[parentIndex];
-			heap[parentIndex] = heap[index] - heap[parentIndex];
-			heap[index] -= heap[parentIndex];
+		if (integers[index] > integers[parentIndex]) {
+			integers[index] += integers[parentIndex];
+			integers[parentIndex] = integers[index] - integers[parentIndex];
+			integers[index] -= integers[parentIndex];
 		}
 		if (parentIndex >= 1) {
-			heapifyArrayFromIndex(heap, parentIndex);
+			heapifyArrayFromIndex(integers, parentIndex);
 		}
-		if (!isHeap(heap, 0, LAST_INDEX)) {
+		if (!isHeap(integers, 0, index)) {
 			throw new RuntimeException("The array is not a heap!");
 		}
 	}
