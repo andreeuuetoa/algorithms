@@ -1,4 +1,4 @@
-package Trees.BinomialHeap;
+package trees.binomialheap;
 
 import java.util.Random;
 

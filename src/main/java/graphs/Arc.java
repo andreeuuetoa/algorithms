@@ -1,4 +1,4 @@
-package Graphs;
+package graphs;
 
 /**
  * Arc (kaar) kujutab ühte noolt graafis.

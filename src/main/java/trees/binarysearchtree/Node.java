@@ -1,4 +1,4 @@
-package Trees.AVL;
+package trees.binarysearchtree;
 
 import java.util.Random;
 
@@ -37,36 +37,6 @@ class Node {
 
 	private void setRight(Node right) {
 		this.right = right;
-	}
-
-	public int getHeight() {
-		return getHeightSubtree(1);
-	}
-
-	private int getHeightSubtree(int layer) {
-		int height = 0;
-		if (getLeft() == null && getRight() == null) {
-			height = layer;
-		}
-		if (getLeft() != null) {
-			int newHeight = getLeft().getHeightSubtree(layer + 1);
-			if (newHeight > height) {
-				height = newHeight;
-			}
-		}
-		if (getRight() != null) {
-			int newHeight = getRight().getHeightSubtree(layer + 1);
-			if (newHeight > height) {
-				height = newHeight;
-			}
-		}
-		return height;
-	}
-
-	int getBalanceFactor() {
-		int rightHeight = getRight() != null ? getRight().getHeight() : 0;
-		int leftHeight = getLeft() != null ? getLeft().getHeight() : 0;
-		return rightHeight - leftHeight;
 	}
 
 	public String pseudoXMLRepresentation() {
@@ -126,7 +96,6 @@ class Node {
 		}
 		Node newNode = new Node(newValue);
 		insertNode(newNode);
-		balance();
 	}
 
 	private void insertNode(Node newNode) {
@@ -137,7 +106,7 @@ class Node {
 				return;
 			}
 			getLeft().insertNode(newNode);
-		} else {
+		} else if (value > getValue()) {
 			if (getRight() == null) {
 				setRight(newNode);
 				return;
@@ -146,66 +115,13 @@ class Node {
 		}
 	}
 
-	private void balance() {
-		if (getLeft() != null) {
-			getLeft().balance();
-		}
-		if (getRight() != null) {
-			getRight().balance();
-		}
-		int originBF = getBalanceFactor();
-		if (originBF == 2) {
-			int rightBF = getRight().getBalanceFactor();
-			if (rightBF == -1) {
-				getRight().rightRotation();
-			}
-			leftRotation();
-		} else if (originBF == -2) {
-			int leftBF = getLeft().getBalanceFactor();
-			if (leftBF == 1) {
-				getLeft().leftRotation();
-			}
-			rightRotation();
-		}
-	}
-
-	private void rightRotation() {
-		Node formerThis = makeCopy();
-		Node formerLeft = formerThis.getLeft();
-		setValue(getLeft().getValue());
-		setLeft(getLeft().getLeft());
-		setRight(formerThis);
-		getRight().setLeft(formerLeft.getRight());
-	}
-
-	private void leftRotation() {
-		Node formerThis = makeCopy();
-		Node formerRight = formerThis.getRight();
-		setValue(getRight().getValue());
-		setRight(getRight().getRight());
-		setLeft(formerThis);
-		getLeft().setRight(formerRight.getLeft());
-	}
-
-	private Node makeCopy() {
-		Node copyThis = new Node(getValue());
-		if (getLeft() != null) {
-			copyThis.setLeft(getLeft().makeCopy());
-		}
-		if (getRight() != null) {
-			copyThis.setRight(getRight().makeCopy());
-		}
-		return copyThis;
-	}
-
 	public static void main(String[] args) {
 		Node root = new Node();
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i <= 10; i++) {
 			System.out.println(root.pseudoXMLRepresentation());
 			int value = new Random().nextInt(101);
 			root.insert(value);
 		}
 		System.out.println(root.pseudoXMLRepresentation());
-		System.out.println(root.getHeight());
 	}
 }

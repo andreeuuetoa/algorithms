@@ -1,4 +1,4 @@
-package Trees.BinaryHeap;
+package trees.binaryheap;
 
 import java.util.Arrays;
 import java.util.Random;

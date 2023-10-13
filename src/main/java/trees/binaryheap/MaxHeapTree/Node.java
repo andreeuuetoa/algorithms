@@ -1,4 +1,4 @@
-package Trees.BinaryHeap.MinHeapTree;
+package trees.binaryheap.MaxHeapTree;
 
 import java.util.Random;
 
@@ -126,11 +126,11 @@ public class Node {
 			return true;
 		}
 		if (getRight() == null) {
-			return getValue() <= getLeft().getValue();
+			return getValue() >= getLeft().getValue();
 		}
 
-		return getValue() <= getLeft().getValue()
-				&& getValue() <= getRight().getValue()
+		return getValue() >= getLeft().getValue()
+				&& getValue() >= getRight().getValue()
 				&& getLeft().isHeap()
 				&& getRight().isHeap();
 	}
@@ -174,14 +174,14 @@ public class Node {
 
 	private void heapify() {
 		if (getLeft() != null) {
-			if (getLeft().getValue() < getValue()) {
+			if (getLeft().getValue() > getValue()) {
 				getLeft().setValue(getLeft().getValue() + getValue());
 				setValue(getLeft().getValue() - getValue());
 				getLeft().setValue(getLeft().getValue() - getValue());
 			}
 		}
 		if (getRight() != null) {
-			if (getRight().getValue() < getValue()) {
+			if (getRight().getValue() > getValue()) {
 				getRight().setValue(getRight().getValue() + getValue());
 				setValue(getRight().getValue() - getValue());
 				getRight().setValue(getRight().getValue() - getValue());
