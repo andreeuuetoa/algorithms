@@ -1,4 +1,4 @@
-package trees.AVL;
+package trees.avltree;
 
 import java.util.Random;
 
