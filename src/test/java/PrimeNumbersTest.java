@@ -1,3 +1,4 @@
+import mathematics.PrimeNumberGenerator;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
