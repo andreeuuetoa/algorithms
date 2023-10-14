@@ -3,7 +3,7 @@ package mathematics;
 import java.util.Stack;
 
 public class ReversePolishNotationCalculator {
-    private final Stack<Integer> integerStack;
+    private final Stack<Double> integerStack;
 
     public ReversePolishNotationCalculator() {
         integerStack = new Stack<>();
@@ -27,7 +27,7 @@ public class ReversePolishNotationCalculator {
 
     private void pushToStackOrOperate(String element) {
         try {
-            int elemAsNumber = Integer.parseInt(element);
+            double elemAsNumber = Double.parseDouble(element);
             integerStack.push(elemAsNumber);
         } catch (NumberFormatException e) {
             operate(element);
@@ -35,8 +35,8 @@ public class ReversePolishNotationCalculator {
     }
 
     private void operate(String operator) {
-        int second = integerStack.pop();
-        int first = integerStack.pop();
+        double second = integerStack.pop();
+        double first = integerStack.pop();
 
         switch (operator) {
             case "+":
@@ -50,6 +50,9 @@ public class ReversePolishNotationCalculator {
                 return;
             case "/":
                 integerStack.push(first / second);
+                return;
+            case "^":
+                integerStack.push(Math.pow(first, second));
                 return;
             default:
                 throw new IllegalStateException("The operation " + operator + " is not supported!");

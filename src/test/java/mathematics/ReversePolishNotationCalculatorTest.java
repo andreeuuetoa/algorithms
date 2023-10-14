@@ -21,7 +21,7 @@ public class ReversePolishNotationCalculatorTest {
     @Test
     public void testCalculatorCanInterpretOneElement() {
         Number result = calculator.interpret("3");
-        assertEquals(3, result);
+        assertEquals(3.0, result);
     }
 
     @Test
@@ -34,7 +34,7 @@ public class ReversePolishNotationCalculatorTest {
     @Test
     public void testCalculatorCanAddTwoNumbersAndReturnTheSum() {
         Number result = calculator.interpret("2 7 +");
-        assertEquals(9, result);
+        assertEquals(9.0, result);
     }
 
     @Test
@@ -47,7 +47,7 @@ public class ReversePolishNotationCalculatorTest {
     @Test
     public void testCalculatorCanSubtractAndReturnTheDifference() {
         Number result = calculator.interpret("9 5 -");
-        assertEquals(4, result);
+        assertEquals(4.0, result);
     }
 
     @Test
@@ -60,7 +60,7 @@ public class ReversePolishNotationCalculatorTest {
     @Test
     public void testCalculatorCanMultiplyAndReturnTheProduct() {
         Number result = calculator.interpret("3 4 *");
-        assertEquals(12, result);
+        assertEquals(12.0, result);
     }
 
     @Test
@@ -73,7 +73,7 @@ public class ReversePolishNotationCalculatorTest {
     @Test
     public void testCalculatorCanDivideAndReturnTheQuotient() {
         Number result = calculator.interpret("15 5 /");
-        assertEquals(3, result);
+        assertEquals(3.0, result);
     }
 
     @Test
@@ -86,6 +86,19 @@ public class ReversePolishNotationCalculatorTest {
     @Test
     public void testCalculatorCanDoManyOperations() {
         Number result = calculator.interpret("5 3 9 8 * 7 2 + - * + 2 /");
-        assertEquals(97, result);
+        assertEquals(97.0, result);
+    }
+
+    @Test
+    public void testCalculatorCanDoExponents() {
+        Number result = calculator.interpret("5 3 ^");
+        assertEquals(125.0, result);
+    }
+
+    @Test
+    public void testCalculatorCannotDoExponentsIfStackContainsASingleNumber() {
+        assertThrows(RuntimeException.class,
+                () -> calculator.interpret("14 ^"),
+                "Cannot take an element to some power with one element in the stack.");
     }
 }
