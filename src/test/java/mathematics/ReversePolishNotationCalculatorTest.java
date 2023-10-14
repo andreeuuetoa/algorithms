@@ -54,7 +54,7 @@ public class ReversePolishNotationCalculatorTest {
     public void testCalculatorCannotSubtractIfStackContainsASingleNumber() {
         assertThrows(RuntimeException.class,
                 () -> calculator.interpret("9 -"),
-                "Cannot add with one element in the stack.");
+                "Cannot subtract with one element in the stack.");
     }
 
     @Test
@@ -67,7 +67,7 @@ public class ReversePolishNotationCalculatorTest {
     public void testCalculatorCannotMultiplyIfStackContainsASingleNumber() {
         assertThrows(RuntimeException.class,
                 () -> calculator.interpret("12 *"),
-                "Cannot add with one element in the stack.");
+                "Cannot multiply with one element in the stack.");
     }
 
     @Test
@@ -80,7 +80,7 @@ public class ReversePolishNotationCalculatorTest {
     public void testCalculatorCannotDivideIfStackContainsASingleNumber() {
         assertThrows(RuntimeException.class,
                 () -> calculator.interpret("9 /"),
-                "Cannot add with one element in the stack.");
+                "Cannot divide with one element in the stack.");
     }
 
     @Test
