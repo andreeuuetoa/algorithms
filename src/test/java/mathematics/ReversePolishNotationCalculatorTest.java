@@ -1,3 +1,5 @@
+package mathematics;
+
 import mathematics.ReversePolishNotationCalculator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
