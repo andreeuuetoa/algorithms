@@ -33,8 +33,8 @@ public class ReversePolishNotationCalculatorTest {
 
     @Test
     public void testCalculatorCanAddTwoNumbersAndReturnTheSum() {
-        Number result = calculator.interpret("2 7 +");
-        assertEquals(9.0, result);
+        Number result = calculator.interpret("2.3 7 +");
+        assertEquals(9.3, result);
     }
 
     @Test
@@ -53,8 +53,8 @@ public class ReversePolishNotationCalculatorTest {
 
     @Test
     public void testCalculatorCanSubtractAndReturnTheDifference() {
-        Number result = calculator.interpret("9 5 -");
-        assertEquals(4.0, result);
+        Number result = calculator.interpret("9.6 5.1 -");
+        assertEquals(4.5, result);
     }
 
     @Test
@@ -73,8 +73,8 @@ public class ReversePolishNotationCalculatorTest {
 
     @Test
     public void testCalculatorCanMultiplyAndReturnTheProduct() {
-        Number result = calculator.interpret("3 4 *");
-        assertEquals(12.0, result);
+        Number result = calculator.interpret("3.2 4.0 *");
+        assertEquals(12.8, result);
     }
 
     @Test
@@ -87,7 +87,7 @@ public class ReversePolishNotationCalculatorTest {
     @Test
     public void testCalculatorCannotMultiplyIfStackContainsASingleNumber() {
         assertThrows(RuntimeException.class,
-                () -> calculator.interpret("12 *"),
+                () -> calculator.interpret("12.4 *"),
                 "Cannot multiply with one element in the stack.");
     }
 
