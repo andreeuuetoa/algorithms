@@ -38,6 +38,13 @@ public class ReversePolishNotationCalculatorTest {
     }
 
     @Test
+    public void testCalculatorCannotAddWithNothingInTheStack() {
+        assertThrows(RuntimeException.class,
+                () -> calculator.interpret("+"),
+                "Cannot add with nothing in the stack.");
+    }
+
+    @Test
     public void testCalculatorCannotAddIfStackContainsASingleNumber() {
         assertThrows(RuntimeException.class,
                 () -> calculator.interpret("6 +"),
@@ -48,6 +55,13 @@ public class ReversePolishNotationCalculatorTest {
     public void testCalculatorCanSubtractAndReturnTheDifference() {
         Number result = calculator.interpret("9 5 -");
         assertEquals(4.0, result);
+    }
+
+    @Test
+    public void testCalculatorCannotSubtractWithNothingInTheStack() {
+        assertThrows(RuntimeException.class,
+                () -> calculator.interpret("-"),
+                "Cannot subtract with nothing in the stack.");
     }
 
     @Test
@@ -64,6 +78,13 @@ public class ReversePolishNotationCalculatorTest {
     }
 
     @Test
+    public void testCalculatorCannotMultiplyWithNothingInTheStack() {
+        assertThrows(RuntimeException.class,
+                () -> calculator.interpret("*"),
+                "Cannot multiply with nothing in the stack.");
+    }
+
+    @Test
     public void testCalculatorCannotMultiplyIfStackContainsASingleNumber() {
         assertThrows(RuntimeException.class,
                 () -> calculator.interpret("12 *"),
@@ -74,6 +95,13 @@ public class ReversePolishNotationCalculatorTest {
     public void testCalculatorCanDivideAndReturnTheQuotient() {
         Number result = calculator.interpret("15 5 /");
         assertEquals(3.0, result);
+    }
+
+    @Test
+    public void testCalculatorCannotDivideWithNothingInTheStack() {
+        assertThrows(RuntimeException.class,
+                () -> calculator.interpret("/"),
+                "Cannot divide with nothing in the stack.");
     }
 
     @Test
