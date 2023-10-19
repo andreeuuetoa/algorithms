@@ -129,4 +129,17 @@ public class ReversePolishNotationCalculatorTest {
                 () -> calculator.interpret("14 ^"),
                 "Cannot take an element to some power with one element in the stack.");
     }
+
+    @Test
+    public void testCalculatorCanDoRoots() {
+        Number result = calculator.interpret("36 2 root");
+        assertEquals(result, 6.0);
+    }
+
+    @Test
+    public void testCalculatorCannotDoRootsIfStackContainsASingleNumber() {
+        assertThrows(RuntimeException.class,
+                () -> calculator.interpret("14 root"),
+                "Cannot take an element to some root with one element in the stack.");
+    }
 }

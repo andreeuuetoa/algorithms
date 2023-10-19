@@ -54,6 +54,9 @@ public class ReversePolishNotationCalculator {
             case "^":
                 doubleStack.push(Math.pow(first, second));
                 return;
+            case "root":
+                doubleStack.push(Math.pow(first, 1 / second));
+                return;
             default:
                 throw new IllegalStateException("The operation " + operator + " is not supported!");
         }
