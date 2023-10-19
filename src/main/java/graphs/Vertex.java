@@ -1,10 +1,5 @@
 package graphs;
 
-/**
- * Vertex (tipp) kujutab ühte tippu graafis.
- * Tipule on omistatud unikaalne identifikaator, järgmine tipp,
- * viide esimesele sellest väljuvale kaarele ja infoväli.
- */
 class Vertex {
 	private final String id;
 	private Vertex next;

@@ -1,11 +1,5 @@
 package graphs;
 
-/**
- * Graph (graaf) klassiga kujutame graafi kui objekti.
- * Graafil on defineeritud unikaalne identifikaator,
- * tipp, mille lisame ja millest alustame graafi läbides
- * ja infoväli, mis ütleb, et kas graaf sisaldab negatiivset kaart.
- */
 class Graph {
 	public static final int INFINITY = Integer.MAX_VALUE / 2;
 	private String id;

@@ -1,11 +1,8 @@
 package graphs;
 
 /**
- * Arc (kaar) kujutab ühte noolt graafis.
- * Orienteerimata graafis olevaid servu kujutatakse kahe kaare objektiga
- * (kummagis suunas üks).
- * Kaarele on omistatud unikaalne identifikaator, sihtpunkt,
- * viide järgmisele kaarele ja infoväli.
+ * Arc represents one edge in the graph. Two-directional edges are
+ * represented by two Arc objects (for both directions).
  */
 class Arc {
 	private final String id;
