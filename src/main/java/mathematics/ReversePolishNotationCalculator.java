@@ -48,5 +48,19 @@ public class ReversePolishNotationCalculator {
         } catch (EmptyStackException e) {
             throw new RuntimeException("Cannot perform operation " + operator + " on one element!");
         }
+
+        doubleStack.push(getResultOfOperation(operator, first, second));
+    }
+
+    private double getResultOfOperation(String operator, double first, double second) {
+        return switch (operator) {
+            case "+" -> first + second;
+            case "-" -> first - second;
+            case "*" -> first * second;
+            case "/" -> first / second;
+            case "^" -> Math.pow(first, second);
+            case "root" -> Math.pow(first, 1 / second);
+            default -> throw new IllegalStateException("The operation " + operator + " is not supported!");
+        };
     }
 }
