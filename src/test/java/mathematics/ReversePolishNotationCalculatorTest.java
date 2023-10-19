@@ -27,8 +27,7 @@ public class ReversePolishNotationCalculatorTest {
     @Test
     public void testCalculatorCannotInterpretTwoElements() {
         assertThrows(RuntimeException.class,
-                () -> calculator.interpret("3 5"),
-                "An operation was expected.");
+                () -> calculator.interpret("3 5"));
     }
 
     @Test
@@ -40,15 +39,13 @@ public class ReversePolishNotationCalculatorTest {
     @Test
     public void testCalculatorCannotAddWithNothingInTheStack() {
         assertThrows(RuntimeException.class,
-                () -> calculator.interpret("+"),
-                "Cannot do addition on nothing.");
+                () -> calculator.interpret("+"));
     }
 
     @Test
     public void testCalculatorCannotAddIfStackContainsASingleNumber() {
         assertThrows(RuntimeException.class,
-                () -> calculator.interpret("6 +"),
-                "Cannot do addition on one element.");
+                () -> calculator.interpret("6 +"));
     }
 
     @Test
@@ -60,15 +57,13 @@ public class ReversePolishNotationCalculatorTest {
     @Test
     public void testCalculatorCannotSubtractWithNothingInTheStack() {
         assertThrows(RuntimeException.class,
-                () -> calculator.interpret("-"),
-                "Cannot do subtraction on nothing.");
+                () -> calculator.interpret("-"));
     }
 
     @Test
     public void testCalculatorCannotSubtractIfStackContainsASingleNumber() {
         assertThrows(RuntimeException.class,
-                () -> calculator.interpret("9 -"),
-                "Cannot do subtraction on one element.");
+                () -> calculator.interpret("9 -"));
     }
 
     @Test
@@ -80,15 +75,13 @@ public class ReversePolishNotationCalculatorTest {
     @Test
     public void testCalculatorCannotMultiplyWithNothingInTheStack() {
         assertThrows(RuntimeException.class,
-                () -> calculator.interpret("*"),
-                "Cannot do multiplication on nothing.");
+                () -> calculator.interpret("*"));
     }
 
     @Test
     public void testCalculatorCannotMultiplyIfStackContainsASingleNumber() {
         assertThrows(RuntimeException.class,
-                () -> calculator.interpret("12.4 *"),
-                "Cannot do multiplication on one element.");
+                () -> calculator.interpret("12.4 *"));
     }
 
     @Test
@@ -100,15 +93,13 @@ public class ReversePolishNotationCalculatorTest {
     @Test
     public void testCalculatorCannotDivideWithNothingInTheStack() {
         assertThrows(RuntimeException.class,
-                () -> calculator.interpret("/"),
-                "Cannot do division on nothing.");
+                () -> calculator.interpret("/"));
     }
 
     @Test
     public void testCalculatorCannotDivideIfStackContainsASingleNumber() {
         assertThrows(RuntimeException.class,
-                () -> calculator.interpret("9 /"),
-                "Cannot do division on one element.");
+                () -> calculator.interpret("9 /"));
     }
 
     @Test
@@ -126,15 +117,13 @@ public class ReversePolishNotationCalculatorTest {
     @Test
     public void testCalculatorCannotDoExponentsWithNothingInTheStack() {
         assertThrows(RuntimeException.class,
-                () -> calculator.interpret("^"),
-                "Cannot to exponent on nothing.");
+                () -> calculator.interpret("^"));
     }
 
     @Test
     public void testCalculatorCannotDoExponentsIfStackContainsASingleNumber() {
         assertThrows(RuntimeException.class,
-                () -> calculator.interpret("14 ^"),
-                "Cannot to exponent on one element.");
+                () -> calculator.interpret("14 ^"));
     }
 
     @Test
@@ -146,14 +135,12 @@ public class ReversePolishNotationCalculatorTest {
     @Test
     public void testCalculatorCannotDoRootsWithNothingInTheStack() {
         assertThrows(RuntimeException.class,
-                () -> calculator.interpret("root"),
-                "Cannot to rooting on nothing.");
+                () -> calculator.interpret("root"));
     }
 
     @Test
     public void testCalculatorCannotDoRootsIfStackContainsASingleNumber() {
         assertThrows(RuntimeException.class,
-                () -> calculator.interpret("14 root"),
-                "Cannot to rooting on one element.");
+                () -> calculator.interpret("14 root"));
     }
 }
