@@ -11,7 +11,7 @@ public class PrimeNumberGenerator {
 		this.primes = new ArrayList<>();
 	}
 
-	public List<Integer> generatePrimesTo(int upperLimit) {
+	public List<Integer> generatePrimesUpTo(int upperLimit) {
 		for (int i = 2; i < upperLimit; i++) {
 			if (isNumberPrime(i)) {
 				primes.add(i);
@@ -31,7 +31,7 @@ public class PrimeNumberGenerator {
 
 	public static void main(String[] args) {
 		int value = new Random().nextInt(501);
-		List<Integer> primes = new PrimeNumberGenerator().generatePrimesTo(value);
+		List<Integer> primes = new PrimeNumberGenerator().generatePrimesUpTo(value);
 		System.out.println(primes);
 	}
 }
