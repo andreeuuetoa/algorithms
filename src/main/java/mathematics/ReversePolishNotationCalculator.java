@@ -1,5 +1,6 @@
 package mathematics;
 
+import java.util.EmptyStackException;
 import java.util.Stack;
 
 public class ReversePolishNotationCalculator {
@@ -35,30 +36,17 @@ public class ReversePolishNotationCalculator {
     }
 
     private void operate(String operator) {
-        double second = doubleStack.pop();
-        double first = doubleStack.pop();
-
-        switch (operator) {
-            case "+":
-                doubleStack.push(first + second);
-                return;
-            case "-":
-                doubleStack.push(first - second);
-                return;
-            case "*":
-                doubleStack.push(first * second);
-                return;
-            case "/":
-                doubleStack.push(first / second);
-                return;
-            case "^":
-                doubleStack.push(Math.pow(first, second));
-                return;
-            case "root":
-                doubleStack.push(Math.pow(first, 1 / second));
-                return;
-            default:
-                throw new IllegalStateException("The operation " + operator + " is not supported!");
+        double second;
+        try {
+            second = doubleStack.pop();
+        } catch (EmptyStackException e) {
+            throw new RuntimeException("Cannot perform operation " + operator + " on no elements!");
+        }
+        double first;
+        try {
+            first = doubleStack.pop();
+        } catch (EmptyStackException e) {
+            throw new RuntimeException("Cannot perform operation " + operator + " on one element!");
         }
     }
 }
