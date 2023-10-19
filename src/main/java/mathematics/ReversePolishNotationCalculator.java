@@ -3,14 +3,14 @@ package mathematics;
 import java.util.Stack;
 
 public class ReversePolishNotationCalculator {
-    private final Stack<Double> integerStack;
+    private final Stack<Double> doubleStack;
 
     public ReversePolishNotationCalculator() {
-        integerStack = new Stack<>();
+        doubleStack = new Stack<>();
     }
 
     public boolean isEmpty() {
-        return integerStack.isEmpty();
+        return doubleStack.isEmpty();
     }
 
     public Number interpret(String expression) {
@@ -19,40 +19,40 @@ public class ReversePolishNotationCalculator {
             pushToStackOrOperate(element);
         }
 
-        if (integerStack.size() != 1) {
+        if (doubleStack.size() != 1) {
             throw new IllegalStateException("The stack must contain only one element - the result of the expression.");
         }
-        return integerStack.peek();
+        return doubleStack.peek();
     }
 
     private void pushToStackOrOperate(String element) {
         try {
             double elemAsNumber = Double.parseDouble(element);
-            integerStack.push(elemAsNumber);
+            doubleStack.push(elemAsNumber);
         } catch (NumberFormatException e) {
             operate(element);
         }
     }
 
     private void operate(String operator) {
-        double second = integerStack.pop();
-        double first = integerStack.pop();
+        double second = doubleStack.pop();
+        double first = doubleStack.pop();
 
         switch (operator) {
             case "+":
-                integerStack.push(first + second);
+                doubleStack.push(first + second);
                 return;
             case "-":
-                integerStack.push(first - second);
+                doubleStack.push(first - second);
                 return;
             case "*":
-                integerStack.push(first * second);
+                doubleStack.push(first * second);
                 return;
             case "/":
-                integerStack.push(first / second);
+                doubleStack.push(first / second);
                 return;
             case "^":
-                integerStack.push(Math.pow(first, second));
+                doubleStack.push(Math.pow(first, second));
                 return;
             default:
                 throw new IllegalStateException("The operation " + operator + " is not supported!");
