@@ -20,7 +20,7 @@ public class ReversePolishNotationCalculator {
         }
 
         if (doubleStack.size() != 1) {
-            throw new IllegalStateException("The stack must contain only one element - the result of the expression.");
+            throw new IllegalStateException("Only one element must have been returned - the result of the expression.");
         }
         return doubleStack.peek();
     }
