@@ -3,10 +3,10 @@ package graphs;
 class Vertex {
 	private final String id;
 	private Vertex next;
-	private Arc first;
+	private Edge first;
 	private int info;
 
-	Vertex(String s, Vertex v, Arc e) {
+	Vertex(String s, Vertex v, Edge e) {
 		id = s;
 		next = v;
 		first = e;
@@ -25,11 +25,11 @@ class Vertex {
 		return next;
 	}
 
-	public Arc getFirst() {
+	public Edge getFirst() {
 		return first;
 	}
 
-	void setFirst(Arc a) {
+	void setFirst(Edge a) {
 		first = a;
 	}
 

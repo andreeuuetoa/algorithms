@@ -1,23 +1,22 @@
 package graphs;
 
 /**
- * Arc represents one edge in the graph. Two-directional edges are
- * represented by two Arc objects (for both directions).
+ * Undirected edges are represented by two Edge objects (one for both directions).
  */
-class Arc {
+class Edge {
 	private final String id;
 	private Vertex target;
-	private Arc next;
+	private Edge next;
 	private int info;
 
-	Arc(String s, Vertex v, Arc a) {
+	Edge(String s, Vertex v, Edge a) {
 		id = s;
 		target = v;
 		next = a;
 		info = 0;
 	}
 
-	Arc(String s) {
+	Edge(String s) {
 		this (s, null, null);
 	}
 
@@ -29,7 +28,7 @@ class Arc {
 		return target;
 	}
 
-	public Arc getNext() {
+	public Edge getNext() {
 		return next;
 	}
 
@@ -46,7 +45,7 @@ class Arc {
 		return id;
 	}
 
-	void setNext(Arc a) {
+	void setNext(Edge a) {
 		next = a;
 	}
 

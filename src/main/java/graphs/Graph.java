@@ -37,7 +37,7 @@ class Graph {
 			sb.append(v.getInfo() <= INFINITY + 1000 && v.getInfo() >= INFINITY - 1000 ? "INFINITY" : v.getInfo());
 			sb.append("\"");
 			sb.append (" -->");
-			Arc a = v.getFirst();
+			Edge a = v.getFirst();
 			while (a != null) {
 				sb.append (" ");
 				sb.append (a);
@@ -65,7 +65,7 @@ class Graph {
 	}
 
 	public void createArc (String aid, Vertex from, Vertex to) {
-		Arc res = new Arc(aid);
+		Edge res = new Edge(aid);
 		res.setNext(from.getFirst());
 		from.setFirst(res);
 		res.setTarget(to);
@@ -108,7 +108,7 @@ class Graph {
 		v = first;
 		while (v != null) {
 			int i = v.getInfo();
-			Arc a = v.getFirst();
+			Edge a = v.getFirst();
 			while (a != null) {
 				int j = a.getTarget().getInfo();
 				res [i][j]++;
