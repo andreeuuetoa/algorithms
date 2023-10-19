@@ -124,6 +124,13 @@ public class ReversePolishNotationCalculatorTest {
     }
 
     @Test
+    public void testCalculatorCannotDoExponentsWithNothingInTheStack() {
+        assertThrows(RuntimeException.class,
+                () -> calculator.interpret("^"),
+                "Cannot to exponent on nothing.");
+    }
+
+    @Test
     public void testCalculatorCannotDoExponentsIfStackContainsASingleNumber() {
         assertThrows(RuntimeException.class,
                 () -> calculator.interpret("14 ^"),
@@ -134,6 +141,13 @@ public class ReversePolishNotationCalculatorTest {
     public void testCalculatorCanDoRoots() {
         Number result = calculator.interpret("36 2 root");
         assertEquals(result, 6.0);
+    }
+
+    @Test
+    public void testCalculatorCannotDoRootsWithNothingInTheStack() {
+        assertThrows(RuntimeException.class,
+                () -> calculator.interpret("root"),
+                "Cannot to rooting on nothing.");
     }
 
     @Test
