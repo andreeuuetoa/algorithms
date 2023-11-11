@@ -15,47 +15,23 @@ public class Node {
 		this.value = value;
 	}
 
-	public Integer getValue() {
-		return value;
-	}
-
-	public void setValue(int value) {
-		this.value = value;
-	}
-
-	public Node getLeft() {
-		return left;
-	}
-
-	public void setLeft(Node left) {
-		this.left = left;
-	}
-
-	public Node getRight() {
-		return right;
-	}
-
-	public void setRight(Node right) {
-		this.right = right;
-	}
-
 	private int getMinHeight() {
 		return getMinHeightSubtree(1);
 	}
 
 	private int getMinHeightSubtree(int layer) {
 		int height = 0;
-		if (getLeft() == null && getRight() == null) {
+		if (left == null && right == null) {
 			height = layer;
 		}
-		if (getLeft() != null) {
-			int newHeight = getLeft().getMinHeightSubtree(layer + 1);
+		if (left != null) {
+			int newHeight = left.getMinHeightSubtree(layer + 1);
 			if (newHeight < height || height == 0) {
 				height = newHeight;
 			}
 		}
-		if (getRight() != null) {
-			int newHeight = getRight().getMinHeightSubtree(layer + 1);
+		if (right != null) {
+			int newHeight = right.getMinHeightSubtree(layer + 1);
 			if (newHeight < height || height == 0) {
 				height = newHeight;
 			}
@@ -64,8 +40,8 @@ public class Node {
 	}
 
 	public int getBalanceFactor() {
-		int rightHeight = getRight() != null ? getRight().getMinHeight() : 0;
-		int leftHeight = getLeft() != null ? getLeft().getMinHeight() : 0;
+		int rightHeight = right != null ? right.getMinHeight() : 0;
+		int leftHeight = left != null ? left.getMinHeight() : 0;
 		return rightHeight - leftHeight;
 	}
 
@@ -80,11 +56,11 @@ public class Node {
 		XML.append("<L");
 		XML.append(layer);
 		XML.append("> ");
-		XML.append(getValue());
+		XML.append(value);
 		XML.append(' ');
-		if (getLeft() != null) {
+		if (left != null) {
 			XML.append("\n");
-			getLeft().fillXML(XML, ++layer);
+			left.fillXML(XML, ++layer);
 			layer--;
 			XML.append("\t".repeat(Math.max(0, layer - 1)));
 		} else {
@@ -97,9 +73,9 @@ public class Node {
 			XML.append(layer--);
 			XML.append(">");
 		}
-		if (getRight() != null) {
+		if (right != null) {
 			XML.append("\n");
-			getRight().fillXML(XML, ++layer);
+			right.fillXML(XML, ++layer);
 			layer--;
 			XML.append("\t".repeat(Math.max(0, layer - 3)));
 		} else {
@@ -122,69 +98,69 @@ public class Node {
 	private boolean isHeap() {
 		// Allikas: https://www.geeksforgeeks.org/how-to-check-if-a-given-array-represents-a-binary-heap/
 
-		if (getLeft() == null && getRight() == null) {
+		if (left == null && right == null) {
 			return true;
 		}
-		if (getRight() == null) {
-			return getValue() <= getLeft().getValue();
+		if (right == null) {
+			return value <= left.value;
 		}
 
-		return getValue() <= getLeft().getValue()
-				&& getValue() <= getRight().getValue()
-				&& getLeft().isHeap()
-				&& getRight().isHeap();
+		return value <= left.value
+				&& value <= right.value
+				&& left.isHeap()
+				&& right.isHeap();
 	}
 
-	private void insert(int value) {
-		if (getValue() == null) {
-			setValue(value);
+	private void insert(int newValue) {
+		if (this.value == null) {
+			this.value = newValue;
 			return;
 		}
-		Node newNode = new Node(value);
+		Node newNode = new Node(newValue);
 		insertNode(newNode);
 		heapify();
 	}
 
 	private void insertNode(Node newNode) {
-		if (getLeft() == null) {
-			setLeft(newNode);
+		if (left == null) {
+			left = newNode;
 			heapify();
 			return;
 		}
-		if (getRight() == null) {
-			setRight(newNode);
+		if (right == null) {
+			right = newNode;
 			heapify();
 			return;
 		}
 		if (getBalanceFactor() == -1) {
-			if (getLeft().getBalanceFactor() == -1) {
-				getLeft().insertNode(newNode);
+			if (left.getBalanceFactor() == -1) {
+				left.insertNode(newNode);
 			} else {
-				getRight().insertNode(newNode);
+				right.insertNode(newNode);
 			}
 		} else {
-			if (getRight().getBalanceFactor() == -1) {
-				getRight().insertNode(newNode);
+			if (right.getBalanceFactor() == -1) {
+				right.insertNode(newNode);
 			} else {
-				getLeft().insertNode(newNode);
+				left.insertNode(newNode);
 			}
 		}
 		heapify();
 	}
 
 	private void heapify() {
-		if (getLeft() != null) {
-			if (getLeft().getValue() < getValue()) {
-				getLeft().setValue(getLeft().getValue() + getValue());
-				setValue(getLeft().getValue() - getValue());
-				getLeft().setValue(getLeft().getValue() - getValue());
+		if (left != null) {
+			if (left.value < value) {
+				left.value = left.value + value;
+				value = left.value - value;
+				left.value = left.value - value;
 			}
 		}
-		if (getRight() != null) {
-			if (getRight().getValue() < getValue()) {
-				getRight().setValue(getRight().getValue() + getValue());
-				setValue(getRight().getValue() - getValue());
-				getRight().setValue(getRight().getValue() - getValue());
+		if (right != null) {
+			if (right.value < value) {
+				right.value = right.value + value;
+				value = right.value - value;
+				right.value = right.value - value;
 			}
 		}
 	}

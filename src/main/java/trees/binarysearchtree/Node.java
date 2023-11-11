@@ -15,30 +15,6 @@ class Node {
 		this.value = value;
 	}
 
-	public Integer getValue() {
-		return value;
-	}
-
-	private void setValue(int value) {
-		this.value = value;
-	}
-
-	public Node getLeft() {
-		return left;
-	}
-
-	private void setLeft(Node left) {
-		this.left = left;
-	}
-
-	public Node getRight() {
-		return right;
-	}
-
-	private void setRight(Node right) {
-		this.right = right;
-	}
-
 	public String pseudoXMLRepresentation() {
 		StringBuilder XML = new StringBuilder();
 		fillXML(XML, 1);
@@ -50,11 +26,11 @@ class Node {
 		XML.append("<L");
 		XML.append(layer);
 		XML.append("> ");
-		XML.append(getValue());
+		XML.append(value);
 		XML.append(' ');
-		if (getLeft() != null) {
+		if (left != null) {
 			XML.append("\n");
-			getLeft().fillXML(XML, ++layer);
+			left.fillXML(XML, ++layer);
 			layer--;
 			XML.append("\t".repeat(Math.max(0, layer - 1)));
 		} else {
@@ -67,9 +43,9 @@ class Node {
 			XML.append(layer--);
 			XML.append(">");
 		}
-		if (getRight() != null) {
+		if (right != null) {
 			XML.append("\n");
-			getRight().fillXML(XML, ++layer);
+			right.fillXML(XML, ++layer);
 			layer--;
 			XML.append("\t".repeat(Math.max(0, layer - 3)));
 		} else {
@@ -90,8 +66,8 @@ class Node {
 	}
 
 	public void insert(int newValue) {
-		if (getValue() == null) {
-			setValue(newValue);
+		if (value == null) {
+			value = newValue;
 			return;
 		}
 		Node newNode = new Node(newValue);
@@ -99,19 +75,19 @@ class Node {
 	}
 
 	private void insertNode(Node newNode) {
-		int value = newNode.getValue();
-		if (value < getValue()) {
-			if (getLeft() == null) {
-				setLeft(newNode);
+		int newValue = newNode.value;
+		if (newValue < this.value) {
+			if (left == null) {
+				left = newNode;
 				return;
 			}
-			getLeft().insertNode(newNode);
-		} else if (value > getValue()) {
-			if (getRight() == null) {
-				setRight(newNode);
+			left.insertNode(newNode);
+		} else if (newValue > this.value) {
+			if (right == null) {
+				right = newNode;
 				return;
 			}
-			getRight().insertNode(newNode);
+			right.insertNode(newNode);
 		}
 	}
 

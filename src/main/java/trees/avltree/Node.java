@@ -15,47 +15,23 @@ class Node {
 		this.value = value;
 	}
 
-	public Integer getValue() {
-		return value;
-	}
-
-	private void setValue(int value) {
-		this.value = value;
-	}
-
-	public Node getLeft() {
-		return left;
-	}
-
-	private void setLeft(Node left) {
-		this.left = left;
-	}
-
-	public Node getRight() {
-		return right;
-	}
-
-	private void setRight(Node right) {
-		this.right = right;
-	}
-
 	public int getHeight() {
 		return getHeightSubtree(1);
 	}
 
 	private int getHeightSubtree(int layer) {
 		int height = 0;
-		if (getLeft() == null && getRight() == null) {
+		if (left == null && right == null) {
 			height = layer;
 		}
-		if (getLeft() != null) {
-			int newHeight = getLeft().getHeightSubtree(layer + 1);
+		if (left != null) {
+			int newHeight = left.getHeightSubtree(layer + 1);
 			if (newHeight > height) {
 				height = newHeight;
 			}
 		}
-		if (getRight() != null) {
-			int newHeight = getRight().getHeightSubtree(layer + 1);
+		if (right != null) {
+			int newHeight = right.getHeightSubtree(layer + 1);
 			if (newHeight > height) {
 				height = newHeight;
 			}
@@ -64,8 +40,8 @@ class Node {
 	}
 
 	int getBalanceFactor() {
-		int rightHeight = getRight() != null ? getRight().getHeight() : 0;
-		int leftHeight = getLeft() != null ? getLeft().getHeight() : 0;
+		int rightHeight = right != null ? right.getHeight() : 0;
+		int leftHeight = left != null ? left.getHeight() : 0;
 		return rightHeight - leftHeight;
 	}
 
@@ -80,11 +56,11 @@ class Node {
 		XML.append("<L");
 		XML.append(layer);
 		XML.append("> ");
-		XML.append(getValue());
+		XML.append(value);
 		XML.append(' ');
-		if (getLeft() != null) {
+		if (left != null) {
 			XML.append("\n");
-			getLeft().fillXML(XML, ++layer);
+			left.fillXML(XML, ++layer);
 			layer--;
 			XML.append("\t".repeat(Math.max(0, layer - 1)));
 		} else {
@@ -97,9 +73,9 @@ class Node {
 			XML.append(layer--);
 			XML.append(">");
 		}
-		if (getRight() != null) {
+		if (right != null) {
 			XML.append("\n");
-			getRight().fillXML(XML, ++layer);
+			right.fillXML(XML, ++layer);
 			layer--;
 			XML.append("\t".repeat(Math.max(0, layer - 3)));
 		} else {
@@ -120,8 +96,8 @@ class Node {
 	}
 
 	public void insert(int newValue) {
-		if (getValue() == null) {
-			setValue(newValue);
+		if (value == null) {
+			value = newValue;
 			return;
 		}
 		Node newNode = new Node(newValue);
@@ -130,40 +106,40 @@ class Node {
 	}
 
 	private void insertNode(Node newNode) {
-		int value = newNode.getValue();
-		if (value < getValue()) {
-			if (getLeft() == null) {
-				setLeft(newNode);
+		int newValue = newNode.value;
+		if (newValue < this.value) {
+			if (left == null) {
+				left = newNode;
 				return;
 			}
-			getLeft().insertNode(newNode);
+			left.insertNode(newNode);
 		} else {
-			if (getRight() == null) {
-				setRight(newNode);
+			if (right == null) {
+				right = newNode;
 				return;
 			}
-			getRight().insertNode(newNode);
+			right.insertNode(newNode);
 		}
 	}
 
 	private void balance() {
-		if (getLeft() != null) {
-			getLeft().balance();
+		if (left != null) {
+			left.balance();
 		}
-		if (getRight() != null) {
-			getRight().balance();
+		if (right != null) {
+			right.balance();
 		}
 		int originBF = getBalanceFactor();
 		if (originBF == 2) {
-			int rightBF = getRight().getBalanceFactor();
+			int rightBF = right.getBalanceFactor();
 			if (rightBF == -1) {
-				getRight().rightRotation();
+				right.rightRotation();
 			}
 			leftRotation();
 		} else if (originBF == -2) {
-			int leftBF = getLeft().getBalanceFactor();
+			int leftBF = left.getBalanceFactor();
 			if (leftBF == 1) {
-				getLeft().leftRotation();
+				left.leftRotation();
 			}
 			rightRotation();
 		}
@@ -171,29 +147,29 @@ class Node {
 
 	private void rightRotation() {
 		Node formerThis = makeCopy();
-		Node formerLeft = formerThis.getLeft();
-		setValue(getLeft().getValue());
-		setLeft(getLeft().getLeft());
-		setRight(formerThis);
-		getRight().setLeft(formerLeft.getRight());
+		Node formerLeft = formerThis.left;
+		value = left.value;
+		left = (left.left);
+		right = formerThis;
+		right.left = (formerLeft.right);
 	}
 
 	private void leftRotation() {
 		Node formerThis = makeCopy();
-		Node formerRight = formerThis.getRight();
-		setValue(getRight().getValue());
-		setRight(getRight().getRight());
-		setLeft(formerThis);
-		getLeft().setRight(formerRight.getLeft());
+		Node formerRight = formerThis.right;
+		value = right.value;
+		right = right.right;
+		left = (formerThis);
+		left.right = formerRight.left;
 	}
 
 	private Node makeCopy() {
-		Node copyThis = new Node(getValue());
-		if (getLeft() != null) {
-			copyThis.setLeft(getLeft().makeCopy());
+		Node copyThis = new Node(value);
+		if (left != null) {
+			copyThis.left = (left.makeCopy());
 		}
-		if (getRight() != null) {
-			copyThis.setRight(getRight().makeCopy());
+		if (right != null) {
+			copyThis.right = right.makeCopy();
 		}
 		return copyThis;
 	}
