@@ -1,4 +1,4 @@
-package graphs;
+package graphs.bellmanford;
 
 class Vertex {
 	private final String id;

@@ -1,4 +1,4 @@
-package graphs;
+package graphs.bellmanford;
 
 /**
  * Undirected edges are represented by two Edge objects (one for both directions).
@@ -7,13 +7,13 @@ class Edge {
 	private final String id;
 	private Vertex target;
 	private Edge next;
-	private int info;
+	private int length;
 
 	Edge(String s, Vertex v, Edge a) {
 		id = s;
 		target = v;
 		next = a;
-		info = 0;
+		length = 0;
 	}
 
 	Edge(String s) {
@@ -32,12 +32,12 @@ class Edge {
 		return next;
 	}
 
-	public int getInfo() {
-		return info;
+	public int getLength() {
+		return length;
 	}
 
-	void setInfo(int info) {
-		this.info = info;
+	void setLength(int length) {
+		this.length = length;
 	}
 
 	@Override
