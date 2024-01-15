@@ -14,7 +14,7 @@ public class ReversePolishNotationCalculator {
         return doubleStack.isEmpty();
     }
 
-    public Number interpret(String expression) {
+    public double interpret(String expression) {
         String[] elements = expression.split(" ");
         for (String element : elements) {
             pushToStackOrOperate(element);
