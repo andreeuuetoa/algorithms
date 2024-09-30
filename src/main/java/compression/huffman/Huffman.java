@@ -1,3 +1,5 @@
+package compression.huffman;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
