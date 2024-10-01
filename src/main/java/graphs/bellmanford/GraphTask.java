@@ -22,8 +22,10 @@ public class GraphTask {
 		g.createRandomSimpleGraph(10, 15);
 		System.out.println(g);
 
+		String start = "v5";
 		System.out.println();
-		g.bellmanFordForOneVertex("v1");
+		System.out.println("Lühimad teed igasse punkti punktist " + start);
+		g.bellmanFordForOneVertex(start);
 		System.out.println(g);
 	}
 } 

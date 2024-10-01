@@ -190,11 +190,7 @@ class Graph {
             }
         }
         initializeDistancesFromVertex(v);
-        Vertex x = first;
-        while (x != null) {
-            relaxAllEdgesOnce(v);
-            x = x.getNext();
-        }
+        relaxAllEdgesOnce(v);
     }
 
     /**
