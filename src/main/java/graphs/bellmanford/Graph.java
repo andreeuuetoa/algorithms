@@ -1,7 +1,5 @@
 package graphs.bellmanford;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 class Graph {
@@ -170,107 +168,6 @@ class Graph {
     private void setRandomLengthOnEdge(Edge newEdge) {
         int newArcInfo = new Random().nextInt(11);
         newEdge.setLength(newArcInfo);
-    }
-
-    public Graph clone() {
-        initializeGraphInfo();
-        Vertex ptr = getFirst();
-        Graph clonedGraph = new Graph(getId());
-        while (ptr != null) {
-            clonedGraph.newVertexDepthFirst(ptr);
-            ptr = ptr.getNext();
-        }
-        return clonedGraph;
-    }
-
-    /**
-     * Säti graafi koopia tegemise alguses iga tipu väärtuseks null.
-     */
-    private void initializeGraphInfo() {
-        Vertex ptr = getFirst();
-        while (ptr != null) {
-            ptr.setInfo(0);
-            ptr = ptr.getNext();
-        }
-    }
-
-    /**
-     * Graafi laiuti läbides tee koopia-graafile uus tipp,
-     * mille id on sama, mis päris graafilt antud tipp.
-     * Kui selline tipp on koopial juba olemas,
-     * siis tagasta see ja ära uut tippu tee.
-     *
-     * @return kloonile loodud uus tipp
-     */
-    private Vertex newVertexDepthFirst(Vertex vertex) {
-        if (vertex.getInfo() != 0) {
-            return vertex;
-        }
-        vertex.setInfo(1);
-        Edge arcFromVertex = vertex.getFirst();
-        Vertex newVertex;
-        while (arcFromVertex != null) {
-            Vertex target = arcFromVertex.getTarget();
-            if (target.getInfo() == 0) {
-                newVertex = newVertexDepthFirst(target);
-            } else {
-                newVertex = getMatchingVertexFromGraph(target);
-            }
-            Vertex sourceVertex = getMatchingVertexFromGraph(vertex);
-            if (sourceVertex == null) {
-                sourceVertex = createVertex(vertex.getId());
-            }
-            Edge newArc = createEdge(arcFromVertex.getId(), sourceVertex, newVertex);
-            newArc.setLength(arcFromVertex.getLength());
-            arcFromVertex = arcFromVertex.getNext();
-        }
-        newVertex = getMatchingVertexFromGraph(vertex);
-        newVertex.setInfo(2);
-        return newVertex;
-    }
-
-    /**
-     * Leia kloonitud graafis olev sama id-ga tipp.
-     *
-     * @param vertex päris graafis olev tipp
-     * @return kloonile vastav tipp
-     */
-    private Vertex getMatchingVertexFromGraph(Vertex vertex) {
-        Vertex ptr = getFirst();
-        while (ptr != null) {
-            if (ptr.getId().equals(vertex.getId())) {
-                return ptr;
-            }
-            ptr = ptr.getNext();
-        }
-        return createVertex(vertex.getId());
-    }
-
-    /**
-     * Implementeeri graafil Bellman-Fordi algoritm, mis leiab igast
-     * tipust lühima kauguse igasse teise tippu.
-     */
-    public List<Graph> relaxAllEdges() {
-        List<Graph> bellmanFordFinishedGraphs = new ArrayList<>();
-        Vertex vertex = getFirst();
-        while (vertex != null) {
-            Graph g = this.clone();
-            g.id = '\'' + g.id + "' graafi lühimad kaugused kõikidesse tippudesse tipust " + vertex;
-            Vertex cloneVertex = getVertexOnClonedGraph(g, vertex);
-            g.initializeGraphInfo();
-            g.bellmanFordForOneVertex(cloneVertex);
-            bellmanFordFinishedGraphs.add(g);
-            vertex = vertex.getNext();
-        }
-        return bellmanFordFinishedGraphs;
-    }
-
-    private Vertex getVertexOnClonedGraph(Graph g, Vertex v) {
-        Vertex cloneVertex = g.getFirst();
-        while (!cloneVertex.getId().equals(v.getId())) {
-            cloneVertex = cloneVertex.getNext();
-        }
-        return cloneVertex;
     }
 
     /**

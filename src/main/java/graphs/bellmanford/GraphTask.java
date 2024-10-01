@@ -1,7 +1,5 @@
 package graphs.bellmanford;
 
-import java.util.List;
-
 public class GraphTask {
 
 	/*
@@ -25,7 +23,7 @@ public class GraphTask {
 		System.out.println(g);
 
 		System.out.println();
-		List<Graph> graphsAfterBellmanFord = g.relaxAllEdges();
-		System.out.println(graphsAfterBellmanFord);
+		g.bellmanFordForOneVertex(g.getFirst());
+		System.out.println(g);
 	}
 } 
