@@ -166,8 +166,8 @@ class Graph {
     }
 
     private void setRandomLengthOnEdge(Edge newEdge) {
-        int newArcInfo = new Random().nextInt(11);
-        newEdge.setLength(newArcInfo);
+        int newEdgeInfo = new Random().nextInt(11);
+        newEdge.setLength(newEdgeInfo);
     }
 
     /**
