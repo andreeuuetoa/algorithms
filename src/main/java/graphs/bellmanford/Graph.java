@@ -180,11 +180,12 @@ class Graph {
         }
         initializeDistancesFromVertex(v);
         Vertex x = first;
-        while (x != null) {
-            bellmanFord(v);
+        boolean changed = true;
+        while (changed && x != null) {
+            changed = bellmanFord(v);
             x = x.getNext();
         }
-        if (graphHasNegativeWeightCycles(v)) {
+        if (changed && graphHasNegativeWeightCycles(v)) {
             System.out.println("OOPS! This graph has a negative weight cycle!");
         }
     }
@@ -201,7 +202,8 @@ class Graph {
         }
     }
 
-    private void bellmanFord(Vertex v) {
+    private boolean bellmanFord(Vertex v) {
+        boolean somethingChanged = false;
         Vertex vertex = first;
         while (vertex != null) {
             Edge out = vertex.getFirst();
@@ -209,11 +211,13 @@ class Graph {
                 int newDist = vertex.getInfo() + out.getLength();
                 if (newDist < out.getTarget().getInfo()) {
                     out.getTarget().setInfo(newDist);
+                    somethingChanged = true;
                 }
                 out = out.getNext();
             }
             vertex = vertex.getNext();
         }
+        return somethingChanged;
     }
 
     private boolean graphHasNegativeWeightCycles(Vertex v) {
