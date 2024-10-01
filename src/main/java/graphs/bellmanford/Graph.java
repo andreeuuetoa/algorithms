@@ -191,6 +191,9 @@ class Graph {
         }
         initializeDistancesFromVertex(v);
         relaxAllEdgesOnce(v);
+        if (graphHasNegativeWeightCycles(v)) {
+            System.out.println("OOPS! This graph has a negative weight cycle!");
+        }
     }
 
     /**
@@ -234,5 +237,17 @@ class Graph {
             }
             vertex = vertex.getNext();
         }
+    }
+
+    private boolean graphHasNegativeWeightCycles(Vertex v) {
+        Edge out = v.getFirst();
+        while (out != null) {
+            int newDist = v.getInfo() + out.getLength();
+            if (newDist < out.getTarget().getInfo()) {
+                return true;
+            }
+            out = out.getNext();
+        }
+        return false;
     }
 }
