@@ -23,7 +23,7 @@ public class GraphTask {
 		System.out.println(g);
 
 		System.out.println();
-		g.bellmanFordForOneVertex(g.getFirst());
+		g.bellmanFordForOneVertex("v1");
 		System.out.println(g);
 	}
 } 

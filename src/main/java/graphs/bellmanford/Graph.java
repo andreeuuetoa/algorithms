@@ -181,7 +181,14 @@ class Graph {
      *
      * @param v lähtetipp
      */
-    public void bellmanFordForOneVertex(Vertex v) {
+    public void bellmanFordForOneVertex(String vertexId) {
+        Vertex v = getFirst();
+        while (!v.getId().equals(vertexId)) {
+            v = v.getNext();
+            if (v == null) {
+                throw new RuntimeException(String.format("No vertex with ID '%s' was found!", vertexId));
+            }
+        }
         initializeDistancesFromVertex(v);
         Vertex x = first;
         while (x != null) {
