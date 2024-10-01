@@ -3,12 +3,14 @@ package graphs.bellmanford;
 class Vertex {
 	private final String id;
 	private Vertex next;
+	private Vertex predecessor;
 	private Edge first;
 	private int info;
 
 	Vertex(String s, Vertex v, Edge e) {
 		id = s;
 		next = v;
+		predecessor = null;
 		first = e;
 		info = 0;
 	}
@@ -43,6 +45,14 @@ class Vertex {
 
 	void setNext(Vertex v) {
 		next = v;
+	}
+
+	public Vertex getPredecessor() {
+		return predecessor;
+	}
+
+	void setPredecessor(Vertex predecessor) {
+		this.predecessor = predecessor;
 	}
 
 	@Override

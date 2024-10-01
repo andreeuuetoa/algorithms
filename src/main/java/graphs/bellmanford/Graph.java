@@ -1,5 +1,8 @@
 package graphs.bellmanford;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 class Graph {
@@ -53,6 +56,34 @@ class Graph {
                 sb.append("\"");
                 a = a.getNext();
             }
+            sb.append(nl);
+            v = v.getNext();
+        }
+        return sb.toString();
+    }
+
+    public String showPaths() {
+        String nl = System.getProperty("line.separator");
+        StringBuilder sb = new StringBuilder(nl);
+        sb.append(id);
+        sb.append("\n");
+        sb.append(nl);
+        Vertex v = first;
+        while (v != null) {
+            sb.append(v);
+            sb.append(" \"");
+            sb.append(v.getInfo() <= INFINITY + 1000 && v.getInfo() >= INFINITY - 1000 ? "INFINITY" : v.getInfo());
+            sb.append("\"");
+            sb.append(" --> ");
+            List<String> path = new ArrayList<String>();
+            Vertex s = v;
+            while (s.getPredecessor() != null) {
+                path.add(s.getPredecessor().getId());
+                s = s.getPredecessor();
+            }
+            path.add(v.getId());
+            Collections.reverse(path);
+            sb.append(String.join("->", path));
             sb.append(nl);
             v = v.getNext();
         }
@@ -216,6 +247,7 @@ class Graph {
                 int newDist = vertex.getInfo() + out.getLength();
                 if (newDist < out.getTarget().getInfo()) {
                     out.getTarget().setInfo(newDist);
+                    out.getTarget().setPredecessor(vertex);
                     somethingChanged = true;
                 }
                 out = out.getNext();

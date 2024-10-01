@@ -16,6 +16,6 @@ public class GraphTask {
 		System.out.println();
 		System.out.println("Shortest paths to each vertex from vertex " + start + ":");
 		g.bellmanFordForOneVertex(start);
-		System.out.println(g);
+		System.out.println(g.showPaths());
 	}
 } 
