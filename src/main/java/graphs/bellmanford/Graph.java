@@ -170,17 +170,6 @@ class Graph {
         newEdge.setLength(newEdgeInfo);
     }
 
-    /**
-     * Kasutades Bellman-Fordi algoritmi, etteantud lähtetipust
-     * lühimad teepikkused kõikidesse teistesse tippudesse.
-     * See meetod käib läbi kõikide graafi kaarte n - 1 korda,
-     * kus n on graafis olevate tippude arv.
-     * Kui graaf sisaldab negatiivse kaaluga kaart,
-     * võib kahtlustada graafis olevat negatiivse kaaluga tsüklit
-     * ja kontrollimiseks proovitakse kõik kaared veel kord läbi käia.
-     *
-     * @param v lähtetipp
-     */
     public void bellmanFordForOneVertex(String vertexId) {
         Vertex v = getFirst();
         while (!v.getId().equals(vertexId)) {
@@ -196,12 +185,6 @@ class Graph {
         }
     }
 
-    /**
-     * Algselt on lähtetipust kõik teised tipud otseselt ligipääsmatud.
-     * Seetõttu sätib meetod algselt teepikkused lähtetipust kõikidesse teistesse tippudesse lõpmatuks.
-     *
-     * @param v lähtetipp
-     */
     private void initializeDistancesFromVertex(Vertex v) {
         Vertex vertex = first;
         while (vertex != null) {
@@ -214,16 +197,6 @@ class Graph {
         }
     }
 
-    /**
-     * Käib läbi kõik graafis olevad kaared, et leida lähtetipu ja
-     * kõikide teiste tippude vahel vähimad teepikkused.
-     * Kui kõik kaared on läbi käidud n - 1 korda,
-     * kus n on graafis olevate tippude arv,
-     * proovi veel üks kord leida lähtetipu ja kõikide teiste tippude vahel väikseim teepikkus.
-     * Kui siis leitakse veel väiksem teepikkus,
-     * leidub graafis negatiivse kaaluga tsükkel ja vähimat teepikkust ei ole võimalik leida.
-     * Selline olukord võib tekkida siis, kui antud graafis on negatiivsete kaaludega kaari.
-     */
     private void relaxAllEdgesOnce(Vertex v) {
         Vertex vertex = first;
         while (vertex != null) {
