@@ -179,7 +179,11 @@ class Graph {
             }
         }
         initializeDistancesFromVertex(v);
-        bellmanFord(v);
+        Vertex x = first;
+        while (x != null) {
+            bellmanFord(v);
+            x = x.getNext();
+        }
         if (graphHasNegativeWeightCycles(v)) {
             System.out.println("OOPS! This graph has a negative weight cycle!");
         }
