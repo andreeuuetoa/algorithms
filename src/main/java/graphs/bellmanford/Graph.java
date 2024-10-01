@@ -179,7 +179,7 @@ class Graph {
             }
         }
         initializeDistancesFromVertex(v);
-        relaxAllEdgesOnce(v);
+        bellmanFord(v);
         if (graphHasNegativeWeightCycles(v)) {
             System.out.println("OOPS! This graph has a negative weight cycle!");
         }
@@ -197,7 +197,7 @@ class Graph {
         }
     }
 
-    private void relaxAllEdgesOnce(Vertex v) {
+    private void bellmanFord(Vertex v) {
         Vertex vertex = first;
         while (vertex != null) {
             Edge out = vertex.getFirst();
