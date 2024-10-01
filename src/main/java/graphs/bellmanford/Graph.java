@@ -171,13 +171,7 @@ class Graph {
     }
 
     public void bellmanFordForOneVertex(String vertexId) {
-        Vertex v = getFirst();
-        while (!v.getId().equals(vertexId)) {
-            v = v.getNext();
-            if (v == null) {
-                throw new RuntimeException(String.format("No vertex with ID '%s' was found!", vertexId));
-            }
-        }
+        Vertex v = getGraphVertexById(vertexId);
         initializeDistancesFromVertex(v);
         Vertex x = first;
         boolean changed = true;
@@ -188,6 +182,17 @@ class Graph {
         if (changed && graphHasNegativeWeightCycles(v)) {
             System.out.println("OOPS! This graph has a negative weight cycle!");
         }
+    }
+
+    private Vertex getGraphVertexById(String vertexId) {
+        Vertex v = getFirst();
+        while (!v.getId().equals(vertexId)) {
+            v = v.getNext();
+            if (v == null) {
+                throw new RuntimeException(String.format("No vertex with ID '%s' was found!", vertexId));
+            }
+        }
+        return v;
     }
 
     private void initializeDistancesFromVertex(Vertex v) {
