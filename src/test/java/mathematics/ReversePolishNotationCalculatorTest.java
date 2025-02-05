@@ -68,7 +68,7 @@ public class ReversePolishNotationCalculatorTest {
 
     @Test
     public void testCalculatorCanMultiplyAndReturnTheProduct() {
-        Number result = calculator.interpret("3.2 4.0 *");
+        Number result = calculator.interpret("3.2 4 *");
         assertEquals(12.8, result);
     }
 
@@ -129,7 +129,7 @@ public class ReversePolishNotationCalculatorTest {
     @Test
     public void testCalculatorCanDoRoots() {
         Number result = calculator.interpret("36 2 root");
-        assertEquals(result, 6.0);
+        assertEquals(6.0, result);
     }
 
     @Test
