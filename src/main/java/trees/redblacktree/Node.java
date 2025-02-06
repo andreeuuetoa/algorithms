@@ -178,6 +178,7 @@ class Node {
 		return copyThis;
 	}
 
+	// TODO
 	private void colour() {
 
 	}
