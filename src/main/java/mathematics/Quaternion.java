@@ -1,9 +1,6 @@
 package mathematics;
 
-import java.util.Arrays;
 import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /** Quaternions. Basic operations. */
 public class Quaternion {
